@@ -1,0 +1,19 @@
+{% extends './layout.html' %}
+
+{% block title %} {{ data.titulo }} {% endblock %}
+
+{% block body %}
+<h1>{{ data.bienvenida }}</h1>
+<img src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina" width="250" height="250">
+<form action="post">
+    <p>Me gusta la comida</p>
+    <select>
+        <!-- Opciones del Combo -->
+        {% for element in data.tipos_comida %}
+        <option>{{ element}}</option>
+        {% endfor %}
+    </select>    
+</form>
+</p>
+
+{% endblock %}
