@@ -23,7 +23,7 @@ La lista de las tecnologías usadas en este proyecto es:
   * [NumPy](https://numpy.org/): Cálculo numérico
   * [Matplotlib](https://matplotlib.org/): Visualización de datos
 
-## Equipo
+## Equipo - Data Up Girls
 ***
 * Marisa García
 * Gema Fernández 
