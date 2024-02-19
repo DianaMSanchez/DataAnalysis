@@ -18,13 +18,19 @@ def after_request(response):
 @app.route("/")
 def index():
     #Array de tipos de comida
-    tipos_comida = ['Italiana', 'Griega', 'Española']
+    tipos_comida = ['Selecciona', 'Italiana', 'Griega', 'Española']
+    horario = ['Selecciona', 'comer', 'cenar']
+    ciudades = ['Selecciona', 'Madrid', 'Roma', 'Bruselas']
+    precio = ['Selecciona', '€', '€€', '€€€€']
     #Datos a enviar a la página
     data = {
         'titulo' : 'Inicio',
         'bienvenida' : 'Hola, te damos la bienvenida',
-        'tipos_comida' : tipos_comida
-    }
+        'tipos_comida' : tipos_comida,
+        'horario' : horario,
+        'ciudades' : ciudades,
+        'precio' : precio
+    }    
     #Retornamos la renderización de index
     return render_template('index.html', data=data)
 

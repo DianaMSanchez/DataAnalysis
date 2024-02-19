@@ -4,15 +4,62 @@
 
 {% block body %}
 <h1>{{ data.bienvenida }}</h1>
-<img src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina" width="250" height="250">
+<div class="elemento-centrado">
+    <img class="logo" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina">
+</div>
 <form action="post">
-    <p>Me gusta la comida</p>
-    <select>
-        <!-- Opciones del Combo -->
-        {% for element in data.tipos_comida %}
-        <option>{{ element}}</option>
-        {% endfor %}
-    </select>    
+    <div class="">
+        <div class="selectores">
+            <p>Voy a comer: </p>
+            <select>
+                <!-- Opciones del Combo -->
+                {% for element in data.horario %}
+                <option>{{ element}}</option>
+                {% endfor %}
+            </select> 
+        </div>
+        <div class="selectores">
+            <p>Me apetece comer: </p>
+            <select>
+                <!-- Opciones del Combo -->
+                {% for element in data.tipos_comida %}
+                <option>{{ element}}</option>
+                {% endfor %}
+            </select> 
+        </div>
+        <div>
+            <div>
+                <input type="checkbox" id="celiaco" name="celiacos">
+                <label for="celiacos">Opciones para celiacos.</label>
+            </div>
+            <div>
+                <input type="checkbox" id="checkbox2" name="vegano">
+                <label for="vegano">Vegano</label>
+            </div>
+            <div>
+                <input type="checkbox" id="checkbox3" name="vegetariano">
+                <label for="vegetariano">Vegetariano</label>
+            </div>
+        </div>
+        <div class="selectores">
+            <p>Estoy en: </p>
+            <select>
+                <!-- Opciones del Combo -->
+                {% for element in data.ciudades %}
+                <option>{{ element}}</option>
+                {% endfor %}
+            </select> 
+        </div>
+        <div class="selectores">
+            <p>Estoy en: </p>
+            <select>
+                <!-- Opciones del Combo -->
+                {% for element in data.precio %}
+                <option>{{ element}}</option>
+                {% endfor %}
+            </select> 
+        </div>
+    </div>   
 </form>
 </p>
 
