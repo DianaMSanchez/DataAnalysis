@@ -1,0 +1,21 @@
+.logo{
+    width: 15%; 
+    height: 15%;
+}
+.elemento-centrado {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+}
+.imagen-circular {
+    border-radius: 50%;
+    width: 5%;
+}
+
+.selectores{
+    margin: 10px;
+    display: flex;
+}
+select{
+    margin-left: 15px;
+}

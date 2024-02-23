@@ -1,0 +1,13 @@
+{% extends './layout.html' %}
+
+{% block title %} Página no encontrada {% endblock %}
+
+{% block body %}
+<h1>Página no encontrada</h1>
+    <p>Ups.. la página que buscas no existe. Por favor vuelve a nuestro menú principal</p>
+
+    <div>
+        4<img class="imagen-circular" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina">4
+    </div>
+       
+{% endblock %}

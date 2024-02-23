@@ -1,0 +1,12 @@
+{% extends './layout.html' %}
+
+{% block title %} {{ data.titulo }} {% endblock %}
+
+{% block body %}
+<h1>{{ data.id }}</h1>
+<img src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina" width="250" height="250">
+<form action="post">
+    <p>Datos del restaurante</p>
+       
+</form>
+{% endblock %}
