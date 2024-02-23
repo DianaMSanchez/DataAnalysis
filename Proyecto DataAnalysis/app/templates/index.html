@@ -44,9 +44,15 @@
         <div class="selectores">
             <p>Estoy en: </p>
             <select>
-                <!-- Opciones del Combo -->
+                <!-- Opciones del Combo Países -->
+                {% for element in data.paises %}
+                <option placeholder="Selecciona pais">{{ element}}</option>
+                {% endfor %}
+            </select>
+            <select>
+                <!-- Opciones del Combo Ciudades-->
                 {% for element in data.ciudades %}
-                <option>{{ element}}</option>
+                <option placeholder="Selecciona ciudad">{{ element}}</option>
                 {% endfor %}
             </select> 
         </div>

@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import tratamiento as t
 
 #Creo la app
 app = Flask(__name__)
@@ -21,6 +22,7 @@ def index():
     tipos_comida = ['Selecciona', 'Italiana', 'Griega', 'Española']
     horario = ['Selecciona', 'comer', 'cenar']
     ciudades = ['Selecciona', 'Madrid', 'Roma', 'Bruselas']
+    pais  = t.paises()
     precio = ['Selecciona', '€', '€€', '€€€€']
     #Datos a enviar a la página
     data = {
@@ -28,6 +30,7 @@ def index():
         'bienvenida' : 'Hola, te damos la bienvenida',
         'tipos_comida' : tipos_comida,
         'horario' : horario,
+        'paises' :  pais,
         'ciudades' : ciudades,
         'precio' : precio
     }    
