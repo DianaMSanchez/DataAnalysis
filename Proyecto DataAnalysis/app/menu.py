@@ -8,7 +8,7 @@ def showMenu():
     print("Selecciona una de las opciones:")
     print()
     print("1. Muestra restaurantes por PAIS")
-    print("2. Muestra restaurantes por CIUDAD")
+    print("2. Muestra restaurantes por GESTION DE PROPIETARIO")
     print("0. Salir")
 
 def ejecutarOption(opcion):
