@@ -34,9 +34,9 @@ def recuperabd (numreg):
             print('Conexión cerrada')
             return res
 
-# datos = recuperabd (103)
-# for fila in datos:
-#     print (fila)
+datos = recuperabd (10)
+for fila in datos:
+    print (fila)
 
 
     
