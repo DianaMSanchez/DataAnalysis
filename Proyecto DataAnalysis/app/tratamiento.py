@@ -14,7 +14,6 @@ import dbconnection
 #     database="restaurantes"
 # )
 
-
 conn = conectadb ()
 print (conn.is_connected())
 df = pd.read_sql("SELECT * FROM valoraciones", conn)
