@@ -11,7 +11,7 @@ def conectadb ():
 
     # Comprobar si la conexión fue exitosa
     if conn.is_connected():
-        print('Conexión exitosa a la base de datos')
+        #print('Conexión exitosa a la base de datos')
         cursor = conn.cursor()
         return cursor
 
