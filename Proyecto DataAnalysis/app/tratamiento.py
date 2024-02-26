@@ -2,10 +2,11 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.express as px
+# import plotly.express as px
 import mysql.connector
+import dbconnection
 
- # Establecer la conexión
+# Establecer la conexión
 # conn = mysql.connector.connect(
 #     host="34.89.156.140",
 #     user="root",
@@ -13,23 +14,23 @@ import mysql.connector
 #     database="restaurantes"
 # )
 
-#df = pd.read_sql(conn, "select * from valoraciones")
-df = pd.read_csv("csv/hnsc.csv") 
 
-# Función para componer una búsqueda de acuerdo a los datos de entrada. 
-def filtroRestaurantes (meals, cusines):
-    return restaurantes
+conn = conectadb ()
+print (conn.is_connected())
+df = pd.read_sql("SELECT * FROM valoraciones", conn)
+
+#df = pd.read_csv("csv/hnsc.csv") 
 
 def paises():
     #Mostrar países únicos
-    countries = df["country"].drop_duplicates()
+    #countries = df["country"].drop_duplicates()
     print("Listar paises")
     print (countries)
     return countries
 
 def ciudades(pais):
     #Filtrar datos de una sola columna. En este caso solo las ciudades
-    #cities = (df["country"]==pais))
+    cities = (df["country"]==pais)
     print("Listar las ciudades")
     print (cities)
     return cities
