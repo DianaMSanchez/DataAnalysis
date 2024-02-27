@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 # import plotly.express as px
 import mysql.connector
-import dbconnection
+import dbconnection as db
 
 # Establecer la conexión
 # conn = mysql.connector.connect(
@@ -14,9 +14,6 @@ import dbconnection
 #     database="restaurantes"
 # )
 
-conn = conectadb ()
-print (conn.is_connected())
-df = pd.read_sql("SELECT * FROM valoraciones", conn)
 
 #df = pd.read_csv("csv/hnsc.csv") 
 
@@ -148,5 +145,9 @@ if __name__ == '__main__':
     #paises()
     #pruebas ()
     #ciudades("France")
+    conn = db.conectadb ()
+    print ("Cargando datos")
+    df = pd.read_sql("SELECT * FROM valoraciones", conn)
+    print ("Datos Cargados")
     restByClaimed()
     restByCountry()
