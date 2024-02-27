@@ -6,16 +6,20 @@ import matplotlib.pyplot as plt
 import mysql.connector
 import dbconnection as db
 
-# Establecer la conexión
-# conn = mysql.connector.connect(
-#     host="34.89.156.140",
-#     user="root",
-#     password="curso",
-#     database="restaurantes"
-# )
+#Establecer la conexión
+conn = mysql.connector.connect(
+    host="34.89.156.140",
+    user="root",
+    password="curso",
+    database="restaurantes"
+)
 
 
 #df = pd.read_csv("csv/hnsc.csv") 
+# conn = db.conectadb ()
+print ("Cargando datos")
+df = pd.read_sql("SELECT * FROM valoraciones", conn)
+print ("Datos Cargados")
 
 def paises():
     #Mostrar países únicos
@@ -145,9 +149,7 @@ if __name__ == '__main__':
     #paises()
     #pruebas ()
     #ciudades("France")
-    conn = db.conectadb ()
-    print ("Cargando datos")
-    df = pd.read_sql("SELECT * FROM valoraciones", conn)
-    print ("Datos Cargados")
     restByClaimed()
     restByCountry()
+    conn.close()
+    print ("Base da datos cerrada")
