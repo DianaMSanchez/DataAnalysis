@@ -68,10 +68,12 @@
                     {% endfor %}
                 </select> 
             </div>
-            <button type="button" class="btn btn-primary">Gráficas 1</button>
-            <button type="button" class="btn btn-primary">Restaurantes por país</button>
+            <button id="btnClaim" type="button" class="btn btn-primary" onclick="restByClaimed()">Claim</button>
+            <button id="btnRestaurantesPorPais" type="button" class="btn btn-primary" onclick="restByCountry()">Restaurantes por país</button>
         </div>   
     </form>
     </p>
 </div>
 {% endblock %}
+
+

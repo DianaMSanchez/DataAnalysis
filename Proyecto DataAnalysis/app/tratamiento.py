@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.express as px
+#import plotly.express as px
 
 
  # Establecer la conexión
@@ -14,7 +14,7 @@ import plotly.express as px
 # )
 
 #df = pd.read_sql(conn, "select * from valoraciones")
-df = pd.read_csv("csv/hnsc.csv") 
+df = pd.read_csv("csv/tripadvisor_european_restaurants.csv") 
 
 # Función para componer una búsqueda de acuerdo a los datos de entrada. 
 def filtroRestaurantes (meals, cusines):
