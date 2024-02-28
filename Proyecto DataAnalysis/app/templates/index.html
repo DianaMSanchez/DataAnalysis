@@ -3,70 +3,77 @@
 {% block title %} {{ data.titulo }} {% endblock %}
 
 {% block body %}
-<h1>{{ data.bienvenida }}</h1>
-<div class="elemento-centrado">
-    <img class="logo" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina">
+<div class="container d-flex flex-column align-items-center justify-content-center">
+    <h1>{{ data.bienvenida }}</h1>
+    <!--<div class="elemento-centrado">-->
+       <!-- <img class="logo" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina"> -->
+       <img style="width: 10%;" class="img-fluid rounded-circle mb-2" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina">
+       
+    <!--</div>-->
+    <form action="post">
+        <div class="">
+            <div class="selectores">
+                <p>Voy a comer: </p>
+                <select>
+                    <!-- Opciones del Combo -->
+                    {% for element in data.horario %}
+                    <option>{{ element}}</option>
+                    {% endfor %}
+                </select> 
+            </div>
+            <div class="selectores">
+                <p>Me apetece comer: </p>
+                <select>
+                    <!-- Opciones del Combo -->
+                    {% for element in data.tipos_comida %}
+                    <option>{{ element}}</option>
+                    {% endfor %}
+                </select> 
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="celiaco" name="celiacos">
+                    <label for="celiacos">Opciones para celiacos.</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkbox2" name="vegano">
+                    <label for="vegano">Vegano</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkbox3" name="vegetariano">
+                    <label for="vegetariano">Vegetariano</label>
+                </div>
+            </div>
+            <div class="selectores">
+                <p>Estoy en: </p>
+                <select>
+                    <!-- Opciones del Combo Países -->
+                    {% for element in data.paises %}
+                    <option placeholder="Selecciona pais">{{ element}}</option>
+                    {% endfor %}
+                </select>
+                <select>
+                    <!-- Opciones del Combo Ciudades-->
+                    {% for element in data.ciudades %}
+                    <option placeholder="Selecciona ciudad">{{ element}}</option>
+                    {% endfor %}
+                </select> 
+            </div>
+            <div class="selectores">
+                <p>Estoy en: </p>
+                <select>
+                    <!-- Opciones del Combo -->
+                    {% for element in data.precio %}
+                    <option>{{ element}}</option>
+                    {% endfor %}
+                </select> 
+            </div>
+            <button id="btnClaim" type="button" class="btn btn-primary" onclick="restByClaimed()">Claim</button>
+            <button id="btnRestaurantesPorPais" type="button" class="btn btn-primary" onclick="restByCountry()">Restaurantes por país</button>
+        </div>   
+    </form>
+    </p>
 </div>
-<form action="post">
-    <div class="">
-        <div class="selectores">
-            <p>Voy a comer: </p>
-            <select>
-                <!-- Opciones del Combo -->
-                {% for element in data.horario %}
-                <option>{{ element}}</option>
-                {% endfor %}
-            </select> 
-        </div>
-        <div class="selectores">
-            <p>Me apetece comer: </p>
-            <select>
-                <!-- Opciones del Combo -->
-                {% for element in data.tipos_comida %}
-                <option>{{ element}}</option>
-                {% endfor %}
-            </select> 
-        </div>
-        <div>
-            <div>
-                <input type="checkbox" id="celiaco" name="celiacos">
-                <label for="celiacos">Opciones para celiacos.</label>
-            </div>
-            <div>
-                <input type="checkbox" id="checkbox2" name="vegano">
-                <label for="vegano">Vegano</label>
-            </div>
-            <div>
-                <input type="checkbox" id="checkbox3" name="vegetariano">
-                <label for="vegetariano">Vegetariano</label>
-            </div>
-        </div>
-        <div class="selectores">
-            <p>Estoy en: </p>
-            <select>
-                <!-- Opciones del Combo Países -->
-                {% for element in data.paises %}
-                <option placeholder="Selecciona pais">{{ element}}</option>
-                {% endfor %}
-            </select>
-            <select>
-                <!-- Opciones del Combo Ciudades-->
-                {% for element in data.ciudades %}
-                <option placeholder="Selecciona ciudad">{{ element}}</option>
-                {% endfor %}
-            </select> 
-        </div>
-        <div class="selectores">
-            <p>Estoy en: </p>
-            <select>
-                <!-- Opciones del Combo -->
-                {% for element in data.precio %}
-                <option>{{ element}}</option>
-                {% endfor %}
-            </select> 
-        </div>
-    </div>   
-</form>
-</p>
-
 {% endblock %}
+
+
