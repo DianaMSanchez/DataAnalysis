@@ -2,19 +2,21 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import mysql.connector
 #import plotly.express as px
 
 
- # Establecer la conexión
-# conn = mysql.connector.connect(
-#     host="34.89.156.140",
-#     user="root",
-#     password="curso",
-#     database="restaurantes"
-# )
 
-#df = pd.read_sql(conn, "select * from valoraciones")
-df = pd.read_csv("csv/tripadvisor_european_restaurants.csv") 
+ # Establecer la conexión
+conn = mysql.connector.connect(
+    host="34.89.156.140",
+    user="root",
+    password="curso",
+    database="restaurantes"
+)
+
+df = pd.read_sql("SELECT * FROM valoraciones LIMIT 10000",conn)
+#df = pd.read_csv("csv/tripadvisor_european_restaurants.csv") 
 
 # Función para componer una búsqueda de acuerdo a los datos de entrada. 
 def filtroRestaurantes (meals, cusines):
