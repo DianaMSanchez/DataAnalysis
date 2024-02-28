@@ -38,13 +38,23 @@ def index():
     return render_template('index.html', data=data)
 
 #Ruta de información de detalle del restaurante
-@app.route('/restaurante/<restaurantId>')
-def restaurante(restaurantId):
+@app.route('/restaurante')
+def restaurante():
     data = {
-        'titulo' : 'Info Restaurante',
-        'id' : restaurantId
+        'titulo' : 'Estadísticas',
+        'id' : [0,1,2,3,4]
     }
     return render_template('restaurante.html', data=data)
+
+#Ruta de información de detalle del restaurante
+@app.route('/estadistica/<statId>')
+def estadistica(statId):
+    data = {
+        'titulo' : 'Estadísticas',
+        'id' : statId,
+    }
+    return render_template('estadisticas.html', data=data)
+
 
 def page_not_found(error):
     return render_template('404.html'), 404

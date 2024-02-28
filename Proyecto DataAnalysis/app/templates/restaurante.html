@@ -3,10 +3,21 @@
 {% block title %} {{ data.titulo }} {% endblock %}
 
 {% block body %}
-<h1>{{ data.id }}</h1>
-<img src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina" width="250" height="250">
+<h1>{{ data.titulo }}</h1>
 <form action="post">
-    <p>Datos del restaurante</p>
-       
-</form>
+    <p>Este proyecto se basa en la información recopilada por TripAdvisor sobre Restaurantes en Europa.</p>
+    <p>Los datos generales de nuestra base de datos son:.</p>
+    <p>Número de registros:.</p>
+    <p>
+    <h3>Gráficos Disponibles</h3>
+    <ol>
+        <li><a href= "{{ url_for('estadistica', statId=1) }}">Países abarcados en el estudio</a></li>
+        <li><a href= "{{ url_for('estadistica', statId=2) }}">Gestionados por sus dueños</a></li>
+        <li><a href= "{{ url_for('estadistica', statId=3) }}">Relación Vegetarianos vs No opción vegetariana</a></li>
+        <li><a href= "{{ url_for('estadistica', statId=4) }}">Relación Veganos vs No opción vegana</a></li>
+        <li><a href= "{{ url_for('estadistica', statId=5) }}">Relación opción gluten-free</a></li>
+        <li><a href= "{{ url_for('estadistica', statId=6) }}">Ranking de paises por calificación de sus restaurantes</a></li>
+    </ol>
+    
+    </form>
 {% endblock %}

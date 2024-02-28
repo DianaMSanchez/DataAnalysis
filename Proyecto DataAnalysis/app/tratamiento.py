@@ -83,7 +83,7 @@ def pruebas():
     plt.xlabel('País', size=15)
     plt.ylabel('Numero Restaurantes', size=15)
     plt.show()
-    plt.savefig('Distribución Restaurantes.png') #Para guardar la imagen
+    plt.savefig('DistribRestaurantes.jpg') #Para guardar la imagen
 
 # Función para obtener la distribución de restaurantes por países
 def restByCountry():
@@ -103,8 +103,8 @@ def restByCountry():
     plt.title('Restaurantes por país', size=20)
     plt.xlabel('País', size=15)
     plt.ylabel('Numero Restaurantes', size=15)
+    plt.savefig('./static/images/DistribucionRestaurantes.png') #Para guardar la imagen
     plt.show()
-    #plt.savefig('DistribucionRestaurantes.png') #Para guardar la imagen
 
 #Función para obtener cuántos restaruantes han sido reclamados 
 def restByClaimed():
@@ -122,8 +122,8 @@ def restByClaimed():
     plt.title('Restaurantes reclamados en Tripadvisor', size=20)
     plt.xlabel('Categoría', size=15)
     plt.ylabel('Numero Restaurantes', size=15)
+    plt.savefig('./static/images/DistribucionClaimed.png') #Para guardar la imagen
     plt.show()
-    #plt.savefig('DistribucionRestaurantesCity.png') #Para guardar la imagen
 
 #Distribución de Restaurantes por si son Vegetarianos o no. 
 def restByVegetarian():
@@ -143,9 +143,8 @@ def restByVegetarian():
     #Modifico algunas configuraciones de la figura pintada
     plt.title('Distribución Vegetarian_Friendly', size=20)
     plt.axis("equal") 
+    plt.savefig('./static/images/DistribucionVegetariano.png') #Para guardar la imagen
     plt.show()
-    #plt.savefig('DistribucionRestaurantesCity.png') #Para guardar la imagen
-
 
 #Distribución de Restaurantes por si son Veganos o no. 
 def restByVegan():
@@ -165,8 +164,8 @@ def restByVegan():
     #Modifico algunas configuraciones de la figura pintada
     plt.title('Distribución Vegetarian_Friendly', size=20)
     plt.axis("equal") 
+    plt.savefig('./static/images/DistribucionVegano.png') #Para guardar la imagen
     plt.show()
-    #plt.savefig('DistribucionRestaurantesCity.png') #Para guardar la imagen
 
 #Distribución de Restaurantes por si son Gluten_free o no. 
 def restByGluten():
@@ -186,8 +185,9 @@ def restByGluten():
     #Modifico algunas configuraciones de la figura pintada
     plt.title('Distribución Gluten Free', size=20)
     plt.axis("equal") 
+    plt.savefig('./static/images/DistribucionGluten.png') #Para guardar la imagen
     plt.show()
-    #plt.savefig('DistribucionRestaurantesCity.png') #Para guardar la imagen
+
 
 # Función para obtener la nota promedio de restaurantes por países
 def promRestByCountry():
@@ -205,8 +205,8 @@ def promRestByCountry():
     plt.title('Ranking de países con mejores restaurantes basado en la nota media', size=20)
     plt.xlabel('Nota media restauantes', size=15)
     plt.ylabel('País', size=15)
+    plt.savefig('./static/images/Ranking.png') #Para guardar la imagen
     plt.show()
-    #plt.savefig('DistribucionRestaurantes.png') #Para guardar la imagen
 
 #Main. 
 if __name__ == '__main__':
