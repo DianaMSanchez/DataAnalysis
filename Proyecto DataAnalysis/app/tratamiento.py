@@ -3,9 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import mysql.connector
-#import plotly.express as px
-
-
 
  # Establecer la conexión
 conn = mysql.connector.connect(
@@ -14,8 +11,9 @@ conn = mysql.connector.connect(
     password="curso",
     database="restaurantes"
 )
+query = "SELECT restaurant_link, restaurant_name, country, region, province, city, address, latitude, longitude, claimed, awards, top_tags, price_level, price_range, meals, cuisines, special_diets, features, vegetarian_friendly, vegan_options, gluten_free	open_days_per_week, open_hours_per_week, working_shifts_per_week	avg_rating, total_reviews_count, default_language, reviews_count_in_default_language, excellent, very_good, average,poor, terrible, food, service, value, atmosphere, keywords FROM cleanvalues"
+df = pd.read_sql (query, conn)
 
-df = pd.read_sql("SELECT * FROM cleanvalues", conn)
 #df = pd.read_csv ("../csv/hnsc_clean.csv") 
 
 # Función para componer una búsqueda de acuerdo a los datos de entrada. 
