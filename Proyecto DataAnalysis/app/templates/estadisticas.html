@@ -1,0 +1,57 @@
+{% extends './layout.html' %}
+
+{% block title %} {{ data.titulo }} {% endblock %}
+
+{% block body %}
+<form action="post">
+  <div class="index">
+    <p></p>
+    <a href= "{{ url_for('analisis') }}">Volver a estadísticas disponibles</a>
+    {% if data.id == "1" %} 
+    <h2> Países en el estudio</h2>
+    <p>
+        <img src="{{ url_for('static', filename='images/DistribucionRestaurantes.png') }}" alt="Distribución de restaurantes por país">
+    <p>
+   {% elif data.id == "2" %}
+   <h2> Gestionados por sus dueños</h2>
+  <p>
+      <img src="{{ url_for('static', filename='images/DistribucionClaimed.png') }}" alt="Distribucion Gestionado por sus dueños">
+   <p>
+    {% elif data.id == "3" %}
+        <h2> Relación Vegetarianos vs No opción vegetariana</h2>
+        <p>
+           <img src="{{ url_for('static', filename='images/DistribucionVegetariano.png') }}" alt="Distribucion Vegetarianos">
+        <p>
+    {% elif data.id == "4" %}
+        <h2> Relación Veganos vs No opción vegana</h2>
+            <p>
+            <img src="{{ url_for('static', filename='images/DistribucionVegano.png') }}" alt="Distribucion Veganos">
+        <p>
+    {% elif data.id == "5" %}
+        <h2> Distribución opción Gluten Free</h2>
+        <p>
+            <img src="{{ url_for('static', filename='images/DistribucionGluten.png') }}" alt="Distribucion Gluten free">
+        <p>
+    {% elif data.id == "6" %}
+        <h2> Ranking de países con mejor valoración general</h2>
+        <p>
+            <img src="{{ url_for('static', filename='images/Ranking.png') }}" alt="Ranking">
+        <p>                           
+    {% elif data.id == "7" %}
+        <h2> Ranking de países con mejor valoración en comida</h2>
+        <p>
+            <img src="{{ url_for('static', filename='images/RankingFood.png') }}" alt="Ranking">
+        <p>                           
+    {% elif data.id == "8" %}
+        <h2> Ranking de países con mejor valoración en servicio</h2>
+        <p>
+            <img src="{{ url_for('static', filename='images/RankingService.png') }}" alt="Ranking">
+        <p>                           
+    {% else %}
+       <h2> Estadística no contemplada</h2>
+   
+   {% endif %}
+  </div>
+</form>
+ 
+   {% endblock %}
