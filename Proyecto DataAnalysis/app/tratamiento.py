@@ -75,7 +75,7 @@ def pruebas():
 
     #Grafico de distribución de restaurantes
     #Creo la figura y le doy tamaño
-    plt.figure(figsize=(8, 15)) #tamaño en pulgadas.
+    plt.figure(figsize=(6, 12)) #tamaño en pulgadas.
     #Pinto la figura con la agrupación realizada
     grouped["restaurant_name"].plot(kind='barh')
     #Modifico algunas configuraciones de la figura pintada
@@ -96,11 +96,11 @@ def restByCountry():
 
     #Grafico de distribución de restaurantes
     #Creo la figura y le doy tamaño
-    plt.figure(figsize=(15, 8)) #tamaño en pulgadas.
+    colores = ["#AAF683"]
+    plt.figure(figsize=(10, 6)) #tamaño en pulgadas.
     #Pinto la figura con la agrupación realizada
-    grouped["restaurant_name"].plot(kind='barh')
+    grouped["restaurant_name"].plot(kind='barh', color = colores)
     #Modifico algunas configuraciones de la figura pintada
-    plt.title('Restaurantes por país', size=20)
     plt.xlabel('País', size=15)
     plt.ylabel('Numero Restaurantes', size=15)
     plt.savefig('./static/images/DistribucionRestaurantes.png') #Para guardar la imagen
@@ -119,7 +119,6 @@ def restByClaimed():
     #Pinto la figura con la agrupación realizada
     grouped["claimed"].plot(kind='bar', color ="#FF9B85")
     #Modifico algunas configuraciones de la figura pintada
-    plt.title('Restaurantes reclamados en Tripadvisor', size=20)
     plt.xlabel('Categoría', size=15)
     plt.ylabel('Numero Restaurantes', size=15)
     plt.savefig('./static/images/DistribucionClaimed.png') #Para guardar la imagen
@@ -141,7 +140,6 @@ def restByVegetarian():
     #Pinto la figura con la agrupación realizada
     grouped["vegetarian_friendly"].plot(kind='pie', labels = nombres, autopct="%0.1f %%", colors=colores, explode=desfase)
     #Modifico algunas configuraciones de la figura pintada
-    plt.title('Distribución Vegetarian_Friendly', size=20)
     plt.axis("equal") 
     plt.savefig('./static/images/DistribucionVegetariano.png') #Para guardar la imagen
     plt.show()
@@ -162,7 +160,6 @@ def restByVegan():
     #Pinto la figura con la agrupación realizada
     grouped["vegan_options"].plot(kind='pie', labels = nombres, autopct="%0.1f %%", colors=colores, explode=desfase)
     #Modifico algunas configuraciones de la figura pintada
-    plt.title('Distribución Vegetarian_Friendly', size=20)
     plt.axis("equal") 
     plt.savefig('./static/images/DistribucionVegano.png') #Para guardar la imagen
     plt.show()
@@ -183,7 +180,6 @@ def restByGluten():
     #Pinto la figura con la agrupación realizada
     grouped["gluten_free"].plot(kind='pie', labels = nombres, autopct="%0.1f %%", colors=colores, explode=desfase)
     #Modifico algunas configuraciones de la figura pintada
-    plt.title('Distribución Gluten Free', size=20)
     plt.axis("equal") 
     plt.savefig('./static/images/DistribucionGluten.png') #Para guardar la imagen
     plt.show()
@@ -193,29 +189,40 @@ def restByGluten():
 def promRestByCountry():
     #Nota promedio de restaurantes por País.
     print("Ranking de países con mejores restaurantes basado en la nota media")
-    ## Ordenar datos después de groupby
-    #grouped = df.groupby('country')['value'].mean().sort_values(ascending=False)
+    
+    colores = ["#FFD97D"]
+    #Ordenar datos después de groupby
     grouped = df.groupby("country").agg({"value" : 'mean'}).sort_values( by="value", ascending=True)
     print (grouped)
 
     #Grafico de distribución de restaurantes
     #Pinto la figura con la agrupación realizada
-    grouped.plot(kind = 'barh')
+    grouped.plot(kind = 'barh', color=colores, figsize=(10,6))
     #Modifico algunas configuraciones de la figura pintada
-    plt.title('Ranking de países con mejores restaurantes basado en la nota media', size=20)
-    plt.xlabel('Nota media restauantes', size=15)
+    #plt.title('Ranking de países con mejores restaurantes basado en la nota media', size=20)
+    plt.xlabel('Nota media restaurantes', size=15)
     plt.ylabel('País', size=15)
     plt.savefig('./static/images/Ranking.png') #Para guardar la imagen
     plt.show()
+
+#Ejecutar estadísticas
+def ejecutarEstadisticas():
+    restByClaimed()
+    restByCountry()
+    restByVegetarian()
+    restByVegan()
+    restByGluten()
+    promRestByCountry()    
+
 
 #Main. 
 if __name__ == '__main__':
     #paises()
     #pruebas ()
     #ciudades("France")
-    restByClaimed()
+    #restByClaimed()
     restByCountry()
-    restByVegetarian()
-    restByVegan()
-    restByGluten()
+    #restByVegetarian()
+    #restByVegan()
+    #restByGluten()
     promRestByCountry()

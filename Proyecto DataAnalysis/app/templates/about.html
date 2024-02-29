@@ -1,0 +1,18 @@
+{% extends './layout.html' %}
+
+{% block title %} {{ data.titulo }} {% endblock %}
+
+{% block body %}
+<form action="post">
+    <p>Este proyecto ha sido creado por:
+        <ol>
+            <ul><img style="width: 20%;" class="img-fluid rounded-circle mb-2" src="{{ url_for('static', filename='images/AvatarDiana.png') }}" >
+                Diana Sánchez
+            <img style="width: 20%;" class="img-fluid rounded-circle mb-2" src="{{ url_for('static', filename='images/AvatarGema.png') }}" >
+                Gema Fernández
+            <img style="width: 20%;" class="img-fluid rounded-circle mb-2" src="{{ url_for('static', filename='images/AvatarMarisa.png') }}" >
+                Marisa García</ul>
+        </ol>
+    <p>    
+</form>
+{% endblock %}

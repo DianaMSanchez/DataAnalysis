@@ -10,7 +10,6 @@
 </head>
 <body>
 <!-- Barra de Navegación -->
-<!-- Barra de Navegación -->
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
     <div class="container-fluid">
       <!-- Nombre de tu Aplicación centrado horizontal y verticalmente -->
@@ -26,23 +25,25 @@
             <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
           </li>
           <li class="nav-item ms-4 me-5">
-            <a class="nav-link" href="#">Conócenos</a>
+            <a class="nav-link" href="{{ url_for('analisis') }}">Estadísticas</a>
           </li>
           <li class="nav-item ms-4 me-5">
-            <a class="nav-link" href="#">Contacto</a>
+            <a class="nav-link" href="{{ url_for('restaurante') }}">Buscar Restaurante</a>
           </li>
           <li class="nav-item ms-4 me-5">
-            <a class="nav-link" href="{{ url_for('restaurante') }}">Estadísticas</a>
+            <a class="nav-link" href="{{ url_for('about') }}">Conócenos</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <div class="container d-flex flex-column align-items-center justify-content-center">
+    <h1>{{ data.bienvenida }}</h1>
+       <img style="width: 10%;" class="img-fluid rounded-circle mb-2" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina">
 
-
-    
         {% block body %}{% endblock %}
 
+  </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>

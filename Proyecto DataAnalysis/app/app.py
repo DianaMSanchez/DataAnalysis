@@ -18,6 +18,16 @@ def after_request(response):
 #Ruta principal
 @app.route("/")
 def index():
+    #Datos a enviar a la página
+    data = {
+        'titulo' : 'Inicio',
+        'bienvenida' : 'Hola, te damos la bienvenida',
+    }    
+    #Retornamos la renderización de index
+    return render_template('index.html', data=data)
+
+@app.route('/restaurante')
+def restaurante():
     #Array de tipos de comida
     tipos_comida = ['Selecciona', 'Italiana', 'Griega', 'Española']
     horario = ['Selecciona', 'comer', 'cenar']
@@ -27,33 +37,45 @@ def index():
     #Datos a enviar a la página
     data = {
         'titulo' : 'Inicio',
-        'bienvenida' : 'Hola, te damos la bienvenida',
+        'bienvenida' : 'Donde comemos hoy?',
         'tipos_comida' : tipos_comida,
         'horario' : horario,
         'paises' :  pais,
         'ciudades' : ciudades,
         'precio' : precio
     }    
-    #Retornamos la renderización de index
-    return render_template('index.html', data=data)
+    #Retornamos la renderización de la pagina
+    return render_template('restaurantes.html', data=data)
 
-#Ruta de información de detalle del restaurante
-@app.route('/restaurante')
-def restaurante():
+#Ruta de información de analisis de datos
+@app.route('/analisis')
+def analisis():
     data = {
         'titulo' : 'Estadísticas',
+        'bienvenida' : 'Los datos de un vistazo',
         'id' : [0,1,2,3,4]
     }
-    return render_template('restaurante.html', data=data)
+    return render_template('analisis.html', data=data)
 
-#Ruta de información de detalle del restaurante
+#Ruta de detalle de estadísticas
 @app.route('/estadistica/<statId>')
 def estadistica(statId):
     data = {
         'titulo' : 'Estadísticas',
-        'id' : statId,
+        'bienvenida' : 'Estadísticas',
+        'id' : statId
     }
     return render_template('estadisticas.html', data=data)
+
+#Ruta de Conocenos
+@app.route('/about')
+def about():
+    data = {
+        'titulo' : 'Acerca de',
+        'bienvenida' : 'Sobre nosotros'
+    }
+    return render_template('about.html', data=data)
+
 
 
 def page_not_found(error):
