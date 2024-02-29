@@ -3,77 +3,20 @@
 {% block title %} {{ data.titulo }} {% endblock %}
 
 {% block body %}
-<div class="container d-flex flex-column align-items-center justify-content-center">
-    <h1>{{ data.bienvenida }}</h1>
-    <!--<div class="elemento-centrado">-->
-       <!-- <img class="logo" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina"> -->
-       <img style="width: 10%;" class="img-fluid rounded-circle mb-2" src="{{ url_for('static', filename='images/HoyNoSeCocina.png') }}" alt="Hoy no se cocina">
-       
-    <!--</div>-->
     <form action="post">
         <div class="">
-            <div class="selectores">
-                <p>Voy a comer: </p>
-                <select>
-                    <!-- Opciones del Combo -->
-                    {% for element in data.horario %}
-                    <option>{{ element}}</option>
-                    {% endfor %}
-                </select> 
-            </div>
-            <div class="selectores">
-                <p>Me apetece comer: </p>
-                <select>
-                    <!-- Opciones del Combo -->
-                    {% for element in data.tipos_comida %}
-                    <option>{{ element}}</option>
-                    {% endfor %}
-                </select> 
-            </div>
-            <div>
-                <div>
-                    <input type="checkbox" id="celiaco" name="celiacos">
-                    <label for="celiacos">Opciones para celiacos.</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="checkbox2" name="vegano">
-                    <label for="vegano">Vegano</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="checkbox3" name="vegetariano">
-                    <label for="vegetariano">Vegetariano</label>
-                </div>
-            </div>
-            <div class="selectores">
-                <p>Estoy en: </p>
-                <select>
-                    <!-- Opciones del Combo Países -->
-                    {% for element in data.paises %}
-                    <option placeholder="Selecciona pais">{{ element}}</option>
-                    {% endfor %}
-                </select>
-                <select>
-                    <!-- Opciones del Combo Ciudades-->
-                    {% for element in data.ciudades %}
-                    <option placeholder="Selecciona ciudad">{{ element}}</option>
-                    {% endfor %}
-                </select> 
-            </div>
-            <div class="selectores">
-                <p>Estoy en: </p>
-                <select>
-                    <!-- Opciones del Combo -->
-                    {% for element in data.precio %}
-                    <option>{{ element}}</option>
-                    {% endfor %}
-                </select> 
-            </div>
-            <button id="btnClaim" type="button" class="btn btn-primary" onclick="restByClaimed()">Claim</button>
-            <button id="btnRestaurantesPorPais" type="button" class="btn btn-primary" onclick="restByCountry()">Restaurantes por país</button>
+            <p>Somos "Hoy No Se Cocina" un proyecto que busca mostrar la potencia del análisis de datos.</p>
+            <p>
+                ¿Que podemos ofrecerte? </p>
+            <p></p>
+                Te gustan los datos, aquí te mostramos una forma divertida de presentar los datos:
+            <a href= "{{ url_for('analisis') }}">Estadisticas de nuestra fuente de información</a>
+            <p></p>
+            Prefieres ver una aplicación real del análisis de información:
+            <a href= "{{ url_for('restaurante') }}">Busca el restaurante que se acomode a ti</a>
+            </ol>        
         </div>   
     </form>
-    </p>
-</div>
 {% endblock %}
 
 

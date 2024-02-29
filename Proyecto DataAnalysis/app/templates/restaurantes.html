@@ -1,0 +1,74 @@
+{% extends './layout.html' %}
+
+{% block title %} {{ data.titulo }} {% endblock %}
+
+{% block body %}
+    <form action="post">
+        <div class="">
+            <div class="selectores">
+                <p>Es hora de: 
+                <select>
+                    <!-- Opciones del Combo -->
+                    {% for element in data.horario %}
+                    <option>{{ element}}</option>
+                    {% endfor %}
+                </select> 
+                </p>
+            </div>
+            <div class="selectores">
+                <p>Me apetece comida : 
+                <select>
+                    <!-- Opciones del Combo -->
+                    {% for element in data.tipos_comida %}
+                    <option>{{ element}}</option>
+                    {% endfor %}
+                </select> 
+                </p>
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" id="celiaco" name="celiacos">
+                    <label for="celiacos">Opciones para celiacos.</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkbox2" name="vegano">
+                    <label for="vegano">Vegano</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkbox3" name="vegetariano">
+                    <label for="vegetariano">Vegetariano</label>
+                </div>
+            </div>
+            <p></p> 
+            <div class="selectores">
+                <p>Estoy en: </p>
+                <select id="selectPaises">
+                    <!-- Opciones del Combo Países -->
+                    {% for element in data.paises %}
+                    <option placeholder="Selecciona pais">{{ element}}</option>
+                    {% endfor %}
+                </select>
+                <select id="ciudades">
+                    <!-- Opciones del Combo Ciudades-->
+                    
+                </select> 
+            </div>
+            <p></p>
+            <div class="selectores">
+                <p>Rango de precios: 
+                <select>
+                    <!-- Opciones del Combo -->
+                    {% for element in data.precio %}
+                    <option>{{ element}}</option>
+                    {% endfor %}
+                </select> 
+                <p></p>
+            </div>
+            <p></p>
+            <button id="btnBuscar" type="button" class="btn btn-primary" onclick="restByClaimed()">Buscar</button>
+            </a>
+        </div>   
+    </form>
+    </p>
+</div>
+{% endblock %}
