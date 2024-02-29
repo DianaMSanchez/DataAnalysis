@@ -8,15 +8,15 @@ import mysql.connector
 
 
  # Establecer la conexión
-conn = mysql.connector.connect(
-    host="34.89.156.140",
-    user="root",
-    password="curso",
-    database="restaurantes"
-)
+# conn = mysql.connector.connect(
+#     host="34.89.156.140",
+#     user="root",
+#     password="curso",
+#     database="restaurantes"
+# )
 
-df = pd.read_sql("SELECT * FROM cleanvalues", conn)
-#df = pd.read_csv ("../csv/hnscshort.csv") 
+# df = pd.read_sql("SELECT * FROM cleanvalues", conn)
+df = pd.read_csv ("../csv/hnsc_clean.csv") 
 
 # Función para componer una búsqueda de acuerdo a los datos de entrada. 
 def filtroRestaurantes (meals, cusines):
