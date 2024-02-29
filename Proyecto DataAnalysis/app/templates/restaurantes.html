@@ -4,6 +4,8 @@
 
 {% block body %}
     <form action="post">
+      <div class="index">
+        <p></p>
         <div class="">
             <div class="selectores">
                 <p>Es hora de: 
@@ -48,10 +50,6 @@
                     <option placeholder="Selecciona pais">{{ element}}</option>
                     {% endfor %}
                 </select>
-                <select id="ciudades">
-                    <!-- Opciones del Combo Ciudades-->
-                    
-                </select> 
             </div>
             <p></p>
             <div class="selectores">
@@ -68,6 +66,7 @@
             <button id="btnBuscar" type="button" class="btn btn-primary" onclick="restByClaimed()">Buscar</button>
             </a>
         </div>   
+        </div>
     </form>
     </p>
 </div>

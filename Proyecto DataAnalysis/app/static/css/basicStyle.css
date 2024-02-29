@@ -19,3 +19,43 @@
 select{
     margin-left: 15px;
 }
+.index{
+    margin-top: 35px;
+    background-color: rgba(111, 224, 252, 0.639); 
+    font-size: 1.2rem;
+    font-weight: 200;
+    border-radius: 15px;
+    padding: 10px 15px;
+    
+}
+.m-4{
+    color: #005687;
+    font-size: 50px;
+    font-weight: 700;
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    position: relative;
+    filter: drop-shadow(5px 5px 5px black);
+}
+h1.m-4 {
+    animation-name: cambioColorYEspaciado;
+    animation-duration: 4s; 
+    animation-iteration-count: infinite; 
+}
+@keyframes cambioColorYEspaciado {
+    0% {
+        color: #005687;
+    }
+    50% {
+        color: #68b8fa;
+        letter-spacing: 5px;
+    }
+    100% {
+        color: #979cf9;
+        letter-spacing: 5px;
+    }
+}
+.nav-link:hover {
+    text-decoration: underline; /* Subrayar el texto */
+}
+

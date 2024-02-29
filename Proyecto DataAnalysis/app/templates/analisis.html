@@ -4,18 +4,27 @@
 
 {% block body %}
 <form action="post">
-    <p>Este proyecto se basa en la información recopilada por TripAdvisor sobre Restaurantes en Europa.</p>
-    <p>Número de registros:.</p>
-    <p>
-    <h3>Gráficos Disponibles</h3>
-    <ol>
+    <div class="index">
+        <h5>Este proyecto se basa en la información recopilada por TripAdvisor sobre Restaurantes en Europa.</h5>
+        <h5>Número de registros: <strong>107.501.</strong></h5>
+    </div>
+    <h4 class="m-3">Estadísticas generales</h4>
+    <ul>
         <li><a href= "{{ url_for('estadistica', statId=1) }}">Países abarcados en el estudio</a></li>
-        <li><a href= "{{ url_for('estadistica', statId=2) }}">Gestionados por sus dueños</a></li>
+        <li><a href= "{{ url_for('estadistica', statId=2) }}">Gestionados por sus dueños dentro de la plataforma</a></li>
+    </ul>
+    <h4 class="m-3">Relativas a tipo de comida</h4>
+    <ul>
         <li><a href= "{{ url_for('estadistica', statId=3) }}">Relación Vegetarianos vs No opción vegetariana</a></li>
         <li><a href= "{{ url_for('estadistica', statId=4) }}">Relación Veganos vs No opción vegana</a></li>
         <li><a href= "{{ url_for('estadistica', statId=5) }}">Relación opción gluten-free</a></li>
-        <li><a href= "{{ url_for('estadistica', statId=6) }}">Ranking de paises por calificación de sus restaurantes</a></li>
-    </ol>
+    </ul>
+    <h4 class="m-3">Rankings</h3>
+    <ul>
+        <li><a href= "{{ url_for('estadistica', statId=6) }}">Ranking de paises por calificación general de restaurantes</a></li>
+        <li><a href= "{{ url_for('estadistica', statId=7) }}">Ranking de paises por calificación de comida </a></li>
+        <li><a href= "{{ url_for('estadistica', statId=8) }}">Ranking de paises por calificación de servicio </a></li>
+    </ul>
     
     </form>
 {% endblock %}

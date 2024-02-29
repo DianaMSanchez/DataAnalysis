@@ -4,9 +4,26 @@ import tratamiento as t
 #Creo la app
 app = Flask(__name__)
 
+app.jinja_env.globals["restByCountry"] = t.restByCountry()
+app.jinja_env.globals["restByClaimed"] = t.restByClaimed()
+app.jinja_env.globals["restByVegetarian"] = t.restByVegetarian()
+app.jinja_env.globals["restByVegan"] = t.restByVegan()
+app.jinja_env.globals["restByGluten"] = t.restByGluten()
+app.jinja_env.globals["promRestByCountry"] = t.promRestByCountry()
+app.jinja_env.globals["promFoodByCountry"] = t.promFoodByCountry()
+app.jinja_env.globals["promServiceByCountry"] = t.promServiceByCountry()
+
+def cities(country):
+    ciudades = t.ciudades(country)
+    return ciudades
+
+app.jinja_env.filters['cities'] = cities
+
 #Acciones de precarga. 
 @app.before_request
 def before_request():
+    #Ejecutamos estadísticas para tomar lo que haya en la BD 
+    #t.ejecutarEstadisticas()
     print ("Precarga de pantalla")
 
 #Acciones después de la petición
@@ -26,7 +43,7 @@ def index():
     #Retornamos la renderización de index
     return render_template('index.html', data=data)
 
-@app.route('/restaurante')
+@app.route('/restaurante', methods=['GET', 'POST'] )
 def restaurante():
     #Array de tipos de comida
     tipos_comida = ['Selecciona', 'Italiana', 'Griega', 'Española']
@@ -37,7 +54,7 @@ def restaurante():
     #Datos a enviar a la página
     data = {
         'titulo' : 'Inicio',
-        'bienvenida' : 'Donde comemos hoy?',
+        'bienvenida' : 'Dónde comemos hoy?',
         'tipos_comida' : tipos_comida,
         'horario' : horario,
         'paises' :  pais,
@@ -47,13 +64,15 @@ def restaurante():
     #Retornamos la renderización de la pagina
     return render_template('restaurantes.html', data=data)
 
+
+
 #Ruta de información de analisis de datos
 @app.route('/analisis')
 def analisis():
     data = {
         'titulo' : 'Estadísticas',
         'bienvenida' : 'Los datos de un vistazo',
-        'id' : [0,1,2,3,4]
+        'id' : [0]
     }
     return render_template('analisis.html', data=data)
 
@@ -72,7 +91,7 @@ def estadistica(statId):
 def about():
     data = {
         'titulo' : 'Acerca de',
-        'bienvenida' : 'Sobre nosotros'
+        'bienvenida' : 'Sobre nosotras'
     }
     return render_template('about.html', data=data)
 

@@ -2,20 +2,23 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#import plotly.express as px
-from flask import jsonify
+from flask import send_file
+import mysql.connector 
+from io import BytesIO
 
 
  # Establecer la conexión
-# conn = mysql.connector.connect(
-#     host="34.89.156.140",
-#     user="root",
-#     password="curso",
-#     database="restaurantes"
-# )
+conn = mysql.connector.connect(
+    host="34.89.156.140",
+    user="root",
+    password="curso",
+    database="restaurantes"
+)
 
-#df = pd.read_sql(conn, "select * from valoraciones")
-df = pd.read_csv("csv/hnsc_header_short.csv") 
+query = "SELECT restaurant_link, restaurant_name, country, region, province, city, address, latitude, longitude, claimed, awards, top_tags, price_level, price_range, meals, cuisines, special_diets, features, vegetarian_friendly, vegan_options, gluten_free, open_days_per_week, open_hours_per_week, working_shifts_per_week, avg_rating, total_reviews_count, default_language, reviews_count_in_default_language, excellent, very_good, average, poor, terrible, food, service, value, atmosphere, keywords FROM cleanvalues"
+df = pd.read_sql (query, conn)
+
+#df = pd.read_csv("csv/hnsc_clean.csv") 
 
 # Función para componer una búsqueda de acuerdo a los datos de entrada. 
 def filtroRestaurantes (meals, cusines):
@@ -30,13 +33,10 @@ def paises():
 
 def ciudades(pais):
     #Filtrar datos de una sola columna. En este caso solo las ciudades
-    #cities = (df["country"]==pais))
-
-    ciudades = (df["country"]==pais)
-    return jsonify({'ciudades': ciudades})
+    cities = (df["country"]==pais)
     print("Listar las ciudades")
     print (cities)
-    #return cities
+    return cities
 
 #Función pruebas
 def pruebas():
@@ -107,8 +107,12 @@ def restByCountry():
     #Modifico algunas configuraciones de la figura pintada
     plt.xlabel('País', size=15)
     plt.ylabel('Numero Restaurantes', size=15)
+    img_buffer = BytesIO()
     plt.savefig('./static/images/DistribucionRestaurantes.png') #Para guardar la imagen
-    plt.show()
+    #img_buffer.seek(0)
+    plt.clf()
+    #plt.show()
+    #return send_file(img_buffer, mimetype='image/png')
 
 #Función para obtener cuántos restaruantes han sido reclamados 
 def restByClaimed():
@@ -121,12 +125,13 @@ def restByClaimed():
     
     #Grafico de distribución de restaurantes
     #Pinto la figura con la agrupación realizada
-    grouped["claimed"].plot(kind='bar', color ="#FF9B85")
+    grouped["claimed"].plot(kind='bar', color ="#FF9B85", figsize=(8,8))
     #Modifico algunas configuraciones de la figura pintada
     plt.xlabel('Categoría', size=15)
     plt.ylabel('Numero Restaurantes', size=15)
     plt.savefig('./static/images/DistribucionClaimed.png') #Para guardar la imagen
-    plt.show()
+    plt.clf()
+    #plt.show()
 
 #Distribución de Restaurantes por si son Vegetarianos o no. 
 def restByVegetarian():
@@ -146,7 +151,8 @@ def restByVegetarian():
     #Modifico algunas configuraciones de la figura pintada
     plt.axis("equal") 
     plt.savefig('./static/images/DistribucionVegetariano.png') #Para guardar la imagen
-    plt.show()
+    plt.clf()
+    #plt.show()
 
 #Distribución de Restaurantes por si son Veganos o no. 
 def restByVegan():
@@ -160,13 +166,14 @@ def restByVegan():
     #Grafico de distribución de restaurantes
     nombres = ["No opción vegana","Disponible Vegana"]
     colores = ["#AAF683","#FFD97D"]
-    desfase = (0, 0.1)
+    desfase = (0, 0.01)
     #Pinto la figura con la agrupación realizada
     grouped["vegan_options"].plot(kind='pie', labels = nombres, autopct="%0.1f %%", colors=colores, explode=desfase)
     #Modifico algunas configuraciones de la figura pintada
     plt.axis("equal") 
     plt.savefig('./static/images/DistribucionVegano.png') #Para guardar la imagen
-    plt.show()
+    plt.clf()
+    #plt.show()
 
 #Distribución de Restaurantes por si son Gluten_free o no. 
 def restByGluten():
@@ -186,7 +193,8 @@ def restByGluten():
     #Modifico algunas configuraciones de la figura pintada
     plt.axis("equal") 
     plt.savefig('./static/images/DistribucionGluten.png') #Para guardar la imagen
-    plt.show()
+    plt.clf()
+    #plt.show()
 
 
 # Función para obtener la nota promedio de restaurantes por países
@@ -194,7 +202,7 @@ def promRestByCountry():
     #Nota promedio de restaurantes por País.
     print("Ranking de países con mejores restaurantes basado en la nota media")
     
-    colores = ["#FFD97D"]
+    colores = ["#fdcae1"]
     #Ordenar datos después de groupby
     grouped = df.groupby("country").agg({"value" : 'mean'}).sort_values( by="value", ascending=True)
     print (grouped)
@@ -207,7 +215,51 @@ def promRestByCountry():
     plt.xlabel('Nota media restaurantes', size=15)
     plt.ylabel('País', size=15)
     plt.savefig('./static/images/Ranking.png') #Para guardar la imagen
-    plt.show()
+    plt.clf()
+    #plt.show()
+
+# Función para obtener la calificacion promedio en comida de restaurantes por países
+def promFoodByCountry():
+    #Nota promedio de restaurantes por País.
+    print("Ranking de países basado en la nota media de comida")
+    
+    colores = ["#77dd77"]
+    #Ordenar datos después de groupby
+    grouped = df.groupby("country").agg({"food" : 'mean'}).sort_values( by="food", ascending=True)
+    print (grouped)
+
+    #Grafico de distribución de restaurantes
+    #Pinto la figura con la agrupación realizada
+    grouped.plot(kind = 'barh', color=colores, figsize=(10,6))
+    #Modifico algunas configuraciones de la figura pintada
+    #plt.title('Ranking de países con mejores restaurantes basado en la nota media', size=20)
+    plt.xlabel('Nota media comida', size=15)
+    plt.ylabel('País', size=15)
+    plt.savefig('./static/images/RankingFood.png') #Para guardar la imagen
+    plt.clf()
+    #plt.show()
+
+# Función para obtener la calificacion promedio en comida de restaurantes por países
+def promServiceByCountry():
+    #Nota promedio de restaurantes por País.
+    print("Ranking de países basado en la nota media de comida")
+    
+    colores = ["#b0c2f2"]
+    #Ordenar datos después de groupby
+    grouped = df.groupby("country").agg({"service" : 'mean'}).sort_values( by="service", ascending=True)
+    print (grouped)
+
+    #Grafico de distribución de restaurantes
+    #Pinto la figura con la agrupación realizada
+    grouped.plot(kind = 'barh', color=colores, figsize=(10,6))
+    #Modifico algunas configuraciones de la figura pintada
+    #plt.title('Ranking de países con mejores restaurantes basado en la nota media', size=20)
+    plt.xlabel('Nota media servicio', size=15)
+    plt.ylabel('País', size=15)
+    plt.savefig('./static/images/RankingService.png') #Para guardar la imagen
+    plt.clf()
+    #plt.show()
+
 
 #Ejecutar estadísticas
 def ejecutarEstadisticas():
@@ -217,16 +269,19 @@ def ejecutarEstadisticas():
     restByVegan()
     restByGluten()
     promRestByCountry()    
-
+    promFoodByCountry()
+    promServiceByCountry()
 
 #Main. 
 if __name__ == '__main__':
     #paises()
     #pruebas ()
     #ciudades("France")
-    #restByClaimed()
-    restByCountry()
-    #restByVegetarian()
-    #restByVegan()
-    #restByGluten()
-    promRestByCountry()
+    restByClaimed()
+    #restByCountry()
+    restByVegetarian()
+    restByVegan()
+    restByGluten()
+    #promRestByCountry()
+    #promFoodByCountry()
+    #promServiceByCountry()
