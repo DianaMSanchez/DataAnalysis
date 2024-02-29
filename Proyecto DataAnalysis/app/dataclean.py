@@ -16,7 +16,7 @@ cursor = conn.cursor()
 # cursor.fetchall
 
 # Ruta al archivo CSV
-archivo_csv = "../csv/hnsc.csv"
+archivo_csv = "../csv/hnscshort.csv"
 
 
 # Abrir el archivo CSV y leer línea por línea
@@ -33,8 +33,7 @@ with open(archivo_csv, newline='', encoding='utf-8') as csvfile:
             print (row)
             print (r)
             r+=1
-            if r == 10000:
-                break
+           
 
 # Cerrar el cursor y la conexión
 print ("Lineas copiadas: ",r)

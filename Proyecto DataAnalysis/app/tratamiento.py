@@ -15,8 +15,8 @@ conn = mysql.connector.connect(
     database="restaurantes"
 )
 
-df = pd.read_sql("SELECT * FROM valoraciones LIMIT 10000",conn)
-#df = pd.read_csv("csv/tripadvisor_european_restaurants.csv") 
+df = pd.read_sql("SELECT * FROM cleanvalues", conn)
+#df = pd.read_csv ("../csv/hnscshort.csv") 
 
 # Función para componer una búsqueda de acuerdo a los datos de entrada. 
 def filtroRestaurantes (meals, cusines):
